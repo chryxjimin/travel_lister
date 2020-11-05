@@ -1,10 +1,26 @@
 class UsersController < ApplicationController 
 
     get '/signup' do
-        erb :signup
+        erb :'/users/signup'
     end
 
     post '/signup' do
-        
+        user = User.create(username: params[:username], password: params[:password])
+        if user.username != "" && user.password != ""
+            session[:user_id] = user.id 
+            erb :'/travel_essentials/list'
+        else 
+            redirect to '/signup'
+        end
     end
+
+    get '/login' do
+        
+        redirect to '/users/login'
+    end
+
+    post '/login' do
+
+    end
+
 end
