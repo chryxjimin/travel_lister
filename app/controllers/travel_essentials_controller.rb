@@ -1,3 +1,0 @@
-class TravelEssentialsController < ApplicationController 
-
-end

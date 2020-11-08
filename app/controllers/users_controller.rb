@@ -8,7 +8,7 @@ class UsersController < ApplicationController
         user = User.create(username: params[:username], password: params[:password])
         if user.username != "" && user.password != ""
             session[:user_id] = user.id 
-            erb :'/travel_essentials/list'
+            erb :'/list/index'
         else 
             redirect to '/signup'
         end
