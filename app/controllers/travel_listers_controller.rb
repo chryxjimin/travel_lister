@@ -43,6 +43,11 @@ class TravelListersController < ApplicationController
         #Edit
         #make a get request to '/list/:id/edit'
 
+        get '/list/:id/edit' do
+            @list = TravelLister.find_by_id(params[:id])
+            erb :'/list/edit'
+        end
+
         #Update
         #make a patch request to '/list/:id'
 

@@ -1,0 +1,11 @@
+<%# patch method with post to recipes/:id%>
+
+<h1>Update Travel List</h1>
+<h2>Edits for <%= @list.description %></h2>
+ 
+  <form action="/list/<%= @list.id %>" method="POST">
+    <input id="hidden" type="hidden" name="_method" value="patch">
+    <label>Edit the list item:</label>
+    <br>
+    <input type="text" name="list" placeholder="<%= @list.description %>">
+ 

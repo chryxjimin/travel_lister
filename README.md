@@ -21,7 +21,7 @@ post '/list' do -- route that will create a new list item and make sure it is sa
 
 
 
-# edit the erb files and use CSS to put the font for error message in red and style the page later and maybe the buttons too
+# edit the erb files and use CSS to put the font for error message in red and style the page later and maybe categories and then add logos or images and maybe the buttons too and add links or functions that will improve user experience
 
 
 
