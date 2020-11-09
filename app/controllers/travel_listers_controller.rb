@@ -13,7 +13,7 @@ class TravelListersController < ApplicationController
         #Create
 
         post '/list' do
-            list = TravelLister.create(params)
+            list = TravelLister.new(params)
             if list.description.strip != "" && list.save
                 redirect to '/list'
             else 
@@ -51,11 +51,12 @@ class TravelListersController < ApplicationController
         #Update
      
         patch '/list/:id' do
-            #  binding.pry
+            #   binding.pry
             @list = TravelLister.find_by_id(params[:id])
-            if !@list.description.empty?
-                @list.update(params[:list])
-                redirect '/list'
+            if !params[:description].empty?
+                @list.update(description: params[:description])
+                @list.save
+                redirect "/list/#{params[:id]}"
             else
                 @error = "Error: Please enter in a valid description."
                 erb :'/list/edit'
@@ -65,4 +66,9 @@ class TravelListersController < ApplicationController
 
     #DESTROY
         #make a delete request to '/list/:id'
+        delete '/list/:id' do
+            @list = TravelLister.find_by_id(params[:id])
+            @list.delete
+            redirect '/list'
+        end
 end
