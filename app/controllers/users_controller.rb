@@ -15,12 +15,30 @@ class UsersController < ApplicationController
     end
 
     get '/login' do
-        
-        redirect to '/users/login'
+        if is_logged_in?
+            redirect "/list"
+        else
+            erb :"/users/login"
+        end
     end
 
     post '/login' do
-
+        user = User.find_by_id(params[:id])
+        if user && user.authenticate(params[:password])
+            session[:user.id] = user.id
+        end
+            redirect "/list"
     end
+
+    helpers do
+        def current_user
+            User.find(session[:user_id])
+        end
+
+        def is_logged_in?
+            !!current_user
+        end
+    end
+            
 
 end
