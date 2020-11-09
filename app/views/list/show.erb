@@ -1,3 +1,6 @@
 <%= @lists.description %>
 
-<%# add a link for option to edit or delete %>
+<form action="/list/<%= @lists.id %>" method="post">
+  <input id="hidden" type="hidden" name="_method" value="delete">
+  <input type="submit" value="delete">
+</form>

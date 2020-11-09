@@ -53,7 +53,7 @@ class TravelListersController < ApplicationController
         patch '/list/:id' do
             #   binding.pry
             @list = TravelLister.find_by_id(params[:id])
-            if !params[:description].empty?
+            if !params[:description].strip.empty?
                 @list.update(description: params[:description])
                 @list.save
                 redirect "/list/#{params[:id]}"
@@ -65,10 +65,10 @@ class TravelListersController < ApplicationController
 
 
     #DESTROY
-        #make a delete request to '/list/:id'
+
         delete '/list/:id' do
             @list = TravelLister.find_by_id(params[:id])
             @list.delete
-            redirect '/list'
+            redirect "/list"
         end
 end
