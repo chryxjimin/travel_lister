@@ -2,9 +2,11 @@
 <h3><a href='/list/new'>Click here to add a new entry</a></h3>
 <br>
 <% @lists.each do |list| %>
-<p><%= list.description %></p>
-<a href="/list/<%= list.id %>/edit">Edit</a>
+<input type="checkbox" name="list.description" value="list.description"> <%= list.description %> </br>
+<a href="/list/<%= list.id %>/edit"> Edit </a>
 <br></br>
 <% end %>
+
+<%# <button>Check All</button> %>
 
 <%# < Need to ensure that only the currently logged user who created this list can edit it> %>
