@@ -13,7 +13,7 @@ class TravelListersController < ApplicationController
         #Create
 
         post '/list' do
-            list = TravelLister.new(params)
+            list = TravelLister.create(params)
             if list.description.strip != "" && list.save
                 redirect to '/list'
             else 
@@ -51,10 +51,10 @@ class TravelListersController < ApplicationController
         #Update
      
         patch '/list/:id' do
-            # binding.pry
-            list = TravelLister.find_by_id(params[:id])
-            if !list.description.empty?
-                list.update(params[:description], params[:user_id])
+            #  binding.pry
+            @list = TravelLister.find_by_id(params[:id])
+            if !@list.description.empty?
+                @list.update(params[:list])
                 redirect '/list'
             else
                 @error = "Error: Please enter in a valid description."
