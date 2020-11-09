@@ -2,10 +2,12 @@
 
 <h1>Update Travel List</h1>
 <h2>Edits for <%= @list.description %></h2>
+<h3><%= @error %></h3>
  
   <form action="/list/<%= @list.id %>" method="POST">
     <input id="hidden" type="hidden" name="_method" value="patch">
-    <label>Edit the list item:</label>
+    <label for="list[description]">Edit the description:</label>
     <br>
-    <input type="text" name="list" placeholder="<%= @list.description %>">
- 
+    <input type="text" name="list[description]" placeholder="<%= @list.description %>">
+    <input type="submit" value="Update list">
+  </form>

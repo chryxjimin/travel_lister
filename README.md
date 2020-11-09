@@ -16,7 +16,9 @@ get '/list/:id' do -- route that will find the list based on the user's id and w
 
 get '/list/new/' do -- route that will show a form that will let users add items to their list, using the new.erb file that will have the post method and action to '/list'
 
-post '/list' do -- route that will create a new list item and make sure it is saved and there is no empty data entered, and it will redirect to '/list' if it is. Otherwise, it will display an error message that says ""Please enter in a valid description." and then redirect the user to '/list/new'
+post '/list' do -- route that will create a new list item and make sure it is saved and there is no empty data entered, and it will redirect to '/list' if it is. Otherwise, it will display an error message that says ""Please enter in a valid description." and then redirect the user to erb :'/list/new'
+
+get '/list/:id/edit' do -- 
 
 
 

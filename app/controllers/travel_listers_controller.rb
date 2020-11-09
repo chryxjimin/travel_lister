@@ -1,3 +1,4 @@
+require "pry"
 class TravelListersController < ApplicationController 
 
     #CREATE
@@ -41,7 +42,6 @@ class TravelListersController < ApplicationController
     #UPDATE
 
         #Edit
-        #make a get request to '/list/:id/edit'
 
         get '/list/:id/edit' do
             @list = TravelLister.find_by_id(params[:id])
@@ -49,7 +49,19 @@ class TravelListersController < ApplicationController
         end
 
         #Update
-        #make a patch request to '/list/:id'
+     
+        patch '/list/:id' do
+            # binding.pry
+            list = TravelLister.find_by_id(params[:id])
+            if !list.description.empty?
+                list.update(params[:description], params[:user_id])
+                redirect '/list'
+            else
+                @error = "Error: Please enter in a valid description."
+                erb :'/list/edit'
+            end
+        end
+
 
     #DESTROY
         #make a delete request to '/list/:id'
