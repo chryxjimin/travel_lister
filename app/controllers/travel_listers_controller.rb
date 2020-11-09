@@ -69,6 +69,7 @@ class TravelListersController < ApplicationController
         delete '/list/:id' do
             @list = TravelLister.find_by_id(params[:id])
             @list.delete
+            @list.save
             redirect "/list"
         end
 end
