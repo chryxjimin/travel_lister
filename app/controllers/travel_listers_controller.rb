@@ -32,7 +32,6 @@ class TravelListersController < ApplicationController
         end
 
         #Show
-        #make a get request to '/list/:id'
 
         get '/list/:id' do
             @lists = TravelLister.find_by_id(params[:id])

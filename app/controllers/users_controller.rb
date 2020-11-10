@@ -6,16 +6,20 @@ class UsersController < ApplicationController
 
     post '/signup' do
         user = User.create(username: params[:username], password: params[:password])
-        if user.username != "" && user.password != ""
+        if user.username.strip != "" && user.password.strip != ""
+            user.save
             session[:user_id] = user.id 
-            erb :'/list/index'
+            erb :'/list/new'
         else 
-            redirect to '/signup'
+            @error = "Username and password cannot be blank."
+            erb :'/users//signup'
         end
-    end
+    ends
 
     get '/login' do
-        if is_logged_in?
+        @current_user = User.find_by_id(session[:user_id])
+        if @current_user
+            # session[:user.id] = user.id
             redirect "/list"
         else
             erb :"/users/login"
@@ -27,9 +31,10 @@ class UsersController < ApplicationController
         if user && user.authenticate(params[:password])
             session[:user.id] = user.id
             erb :"/list/index"
-        end
+        else
             @error = "Incorrect username or password. Please try again."
-            erb :"/user/login"
+            erb :"/users/login"
+        end
     end
 
 
@@ -37,16 +42,6 @@ class UsersController < ApplicationController
 		session.clear
 		redirect "/"
 	end
-
-    helpers do
-        def current_user
-            User.find(session[:user_id])
-        end
-
-        def is_logged_in?
-            !!current_user
-        end
-    end
             
 
 end
