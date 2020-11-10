@@ -26,9 +26,17 @@ class UsersController < ApplicationController
         user = User.find_by_id(params[:id])
         if user && user.authenticate(params[:password])
             session[:user.id] = user.id
+            erb :"/list/index"
         end
-            redirect "/list"
+            @error = "Incorrect username or password. Please try again."
+            erb :"/user/login"
     end
+
+
+	get "/logout" do
+		session.clear
+		redirect "/"
+	end
 
     helpers do
         def current_user
