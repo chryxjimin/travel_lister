@@ -8,7 +8,6 @@ class UsersController < ApplicationController
         #  binding.pry
         if params[:username].strip != "" && params[:password].strip != ""
             @user = User.create(username: params[:username], password: params[:password])
-            # @user.save
             session[:user_id] = @user.id 
             erb :'/list/new'
         else 
@@ -19,10 +18,9 @@ class UsersController < ApplicationController
 
     get '/login' do
         if current_user
-            # session[:user_id] = user.id
-            #The @message doesn't show up
-            @message = "You are already logged in, #{current_user}"
-            redirect "/list"
+            @lists = TravelLister.all
+            @message = "You are already logged in, #{current_user.username}"
+            erb :'/list/index'
         else
             erb :"/users/login"
         end
@@ -32,7 +30,6 @@ class UsersController < ApplicationController
         user = User.find_by(username: params[:username])
         if user && user.authenticate(params[:password])
             session[:user_id] = user.id
-            # erb :"/list/index"
             redirect "/list"
         else
             @error = "Incorrect username or password. Please try again."
