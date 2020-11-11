@@ -28,6 +28,14 @@ delete '/list/:id' do -- when the user views a particular list item there will b
 # edit the show erb page to have links that can lead the user back to homepage if they don't want to delete the entry.
 
 
-
+  user = User.create(username: params[:username], password: params[:password])
+        if user.username.strip != "" && user.password.strip != ""
+            user.save
+            # session[:user_id] = user.id 
+            erb :'/list/new'
+        else 
+            @error = "Username and password cannot be blank."
+            erb :'/users/signup'
+        end
 
 
