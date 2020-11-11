@@ -9,9 +9,19 @@
         <label for="list.description"><%= list.description %></label>
         <input type="checkbox" name="list[description]" value="list[description]" id="list[description]">
          <a href="/list/<%= list.id %>/edit"> Edit </a> 
+         <form action="/list %>" method="post">
+            <input id="hidden" type="hidden" name="_method" value="delete">
+             <br>
+            <input type="submit" value="delete">
+        </form>
       </div>
     </div>
 <% end %>
+<br>
+
+
+
+
 <br>
 
 <p><a href="/">Home Page</a></p>
