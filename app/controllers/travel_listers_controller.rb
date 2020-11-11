@@ -1,16 +1,11 @@
 require "pry"
 class TravelListersController < ApplicationController 
 
-    #CREATE
-
-        #New
 
         get '/list/new' do
             erb :'/list/new'
         end
-        
 
-        #Create
 
         post '/list' do
             list = TravelLister.new(params)
@@ -22,32 +17,36 @@ class TravelListersController < ApplicationController
             end
         end
 
-    #READ
-       
-        #Index
+ 
         
         get '/list' do
-            @lists = TravelLister.all.reverse
-            erb :'/list/index'
+            if is_logged_in?
+                @lists = TravelLister.all.reverse
+                erb :'/list/index'
+            else
+                redirect "/login"
+            end
         end
 
-        #Show
+     
 
         get '/list/:id' do
-            @lists = TravelLister.find_by_id(params[:id])
-             erb :'/list/show'
+            if is_logged_in?
+                @lists = TravelLister.find_by_id(params[:id])
+                erb :'/list/show'
+            else
+                redirect "/login"
+            end
         end
 
-    #UPDATE
-
-        #Edit
+    
 
         get '/list/:id/edit' do
             @list = TravelLister.find_by_id(params[:id])
             erb :'/list/edit'
         end
 
-        #Update
+   
      
         patch '/list/:id' do
             #   binding.pry
@@ -62,8 +61,6 @@ class TravelListersController < ApplicationController
             end
         end
 
-
-    #DESTROY
 
         delete '/list/:id' do
             @list = TravelLister.find_by_id(params[:id])
