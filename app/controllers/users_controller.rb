@@ -6,21 +6,22 @@ class UsersController < ApplicationController
 
     post '/signup' do
         #  binding.pry
-        if params[:username] != "" && params[:password] != ""
+        if params[:username].strip != "" && params[:password].strip != ""
             @user = User.create(username: params[:username], password: params[:password])
             @user.save
             session[:user_id] = @user.id 
             erb :'/list/new'
         else 
-            @error = "Username and password cannot be blank."
+            @error = "Error: Username and password cannot be blank."
             erb :'/users/signup'
         end
     end
 
     get '/login' do
-        @current_user = User.find_by_id(session[:user_id])
-        if @current_user
-            # session[:user.id] = user.id
+        
+        if current_user
+            session[:user_id] = user.id
+            @message = "You are already logged in, #{user}"
             redirect "/list"
         else
             erb :"/users/login"
@@ -28,9 +29,9 @@ class UsersController < ApplicationController
     end
 
     post '/login' do
-        user = User.find_by_id(params[:id])
+        user = User.find_by(username: params[:username])
         if user && user.authenticate(params[:password])
-            session[:user.id] = user.id
+            session[:user_id] = user.id
             erb :"/list/index"
         else
             @error = "Incorrect username or password. Please try again."

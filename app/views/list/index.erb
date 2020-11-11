@@ -1,6 +1,7 @@
 <h1>Travel Lister</h1>
 <h3><a href='/list/new'>Click here to add a new entry</a></h3>
 <br>
+<h3><%= @message %></h3>
 <% @lists.each do |list| %>
     <div id ="checkbox-container">
       <div>
@@ -11,6 +12,8 @@
     </div>
 <% end %>
 <br>
+
+<p><a href="/">Home Page</a></p>
 <p><a href="/logout">Log Out</a></p>
 <%# <button>Check All</button> %>
 
