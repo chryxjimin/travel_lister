@@ -6,5 +6,5 @@ require './config/environment'
 
 use Rack::MethodOverride
 use UsersController
-use TravelListersController
+use ListsController
 run ApplicationController

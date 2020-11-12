@@ -22,7 +22,7 @@ class UsersController < ApplicationController
 
     get '/login' do
         if current_user
-            @lists = TravelLister.all
+            @lists = List.all
             @message = "You are already logged in, #{current_user.username}"
             erb :'/list/index'
         else

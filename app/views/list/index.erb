@@ -1,9 +1,10 @@
 
+<%# <% if current_user.id == @lists.first.user_id %> 
 <h1>Travel Lister</h1>
 <h3><a href='/list/new'>Click here to add a new entry</a></h3>
 <br>
 <h3><%= @message %></h3>
-<% @lists.each do |list| %>
+  <% @lists.each do |list| %>
     <div id ="checkbox-container">
       <div>
         <label for="list.description"><%= list.description %></label>
@@ -16,13 +17,10 @@
         </form>
       </div>
     </div>
-<% end %>
+  <% end %>
+<%# <% end %>
 <br>
 
-
-
-
-<br>
 
 <%# <button>Check All</button> %>
 
