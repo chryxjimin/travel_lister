@@ -1,26 +1,27 @@
 
-
 <h1>Travel Lister</h1>
 <h3><a href='/list/new'>Click here to add a new entry</a></h3>
 <br>
 <h3><%= @message %></h3>
-  <% @lists.each do |list| %>
+<% @lists.each do |list| %>
     <div id ="checkbox-container">
       <div>
         <label for="list.description"><%= list.description %></label>
         <input type="checkbox" name="list[description]" value="list[description]" id="list[description]">
-         <a href="/list/<%= list.id %>/edit"> Edit </a> 
-         <form action="/list %>" method="post">
+         <button><a href="/list/<%= list.id %>/edit"> Edit </a></button>
+         <form action="/list/<%= list.id %>" method="post">
             <input id="hidden" type="hidden" name="_method" value="delete">
-             <br>
             <input type="submit" value="delete">
         </form>
       </div>
     </div>
-  <% end %>
-
+<% end %>
 <br>
 
+
+
+
+<br>
 
 <%# <button>Check All</button> %>
 

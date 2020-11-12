@@ -14,7 +14,6 @@ class ListsController < ApplicationController
 
         post '/list' do
             # binding.pry
-            #cannot get the user_id to be created and associated witht the list.user_id
             @lists = current_user.lists.build(params)
             if @lists.description.strip != "" && @lists.save
                 redirect to '/list'
@@ -27,7 +26,6 @@ class ListsController < ApplicationController
 
         get '/list' do
             if current_user
-                # binding.pry
                 @lists = current_user.lists.reverse
                 erb :'/list/index'
             else
@@ -70,11 +68,11 @@ class ListsController < ApplicationController
 
         delete '/list/:id' do
             #bad uri message
-            if current_user
+            # if current_user
                 @list = List.find_by_id(params[:id])
                 @list.delete
                 @list.save
                 redirect "/list"
-            end
+            # end
         end
 end
