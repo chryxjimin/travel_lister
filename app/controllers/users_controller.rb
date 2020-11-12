@@ -6,13 +6,17 @@ class UsersController < ApplicationController
 
     post '/signup' do
         #  binding.pry
-        if params[:username].strip != "" && params[:password].strip != ""
-            @user = User.create(username: params[:username], password: params[:password])
-            session[:user_id] = @user.id 
-            erb :'/list/new'
-        else 
+        user = User.new(username: params[:username], password: params[:password])
+        if params[:username].strip == "" && params[:password].strip == ""
             @error = "Error: Username and password cannot be blank."
             erb :'/users/signup'
+        elsif User.find_by(username: user.username)
+            @error = "Account with that username already exists."
+            erb :'/users/signup'
+        else 
+            user.save
+            session[:user_id] = user.id 
+            erb :'/list/new'
         end
     end
 
