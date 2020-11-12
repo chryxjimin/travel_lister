@@ -10,7 +10,7 @@ class UsersController < ApplicationController
         if params[:username].strip == "" && params[:password].strip == ""
             @error = "Error: Username and password cannot be blank."
             erb :'/users/signup'
-        elsif User.find_by(username: user.username)
+        elsif User.find_by(username: params[:username])
             @error = "Account with that username already exists."
             erb :'/users/signup'
         else 
