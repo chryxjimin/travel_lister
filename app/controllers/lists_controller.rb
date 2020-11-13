@@ -71,7 +71,7 @@ class ListsController < ApplicationController
             # if current_user
                 @list = List.find_by_id(params[:id])
                 @list.delete
-                @list.save
+                @list.saveå
                 redirect "/list"
             # end
         end
