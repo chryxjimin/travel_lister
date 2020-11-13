@@ -6,8 +6,7 @@
 <% @lists.each do |list| %>
     <div id ="checkbox-container">
       <div>
-        <input type="checkbox" name="list[description]" value="<%= list.description %>" id="list[description]">
-        <label for="list[description]"><%= list.description %></label>
+        <input type="checkbox" name="list[description][]" value="<%= list.description %>" id="<%= list.description %>"> <%= list.description %>
          <button><a href="/list/<%= list.id %>/edit"> Edit </a></button>
          <form action="/list/<%= list.id %>" method="post">
             <input id="hidden" type="hidden" name="_method" value="delete">
@@ -17,11 +16,6 @@
       </div>
     </div>
 <% end %>
-<br>
-
-
-
-
 <br>
 
 <%# <button>Check All</button> %>
