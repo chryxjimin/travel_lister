@@ -18,7 +18,7 @@ class UsersController < ApplicationController
 
     get '/login' do
         if current_user
-            @lists = List.all
+            @lists = current_user.lists.reverse
             @message = "You are already logged in, #{current_user.username}"
             erb :'/list/index'
         else
