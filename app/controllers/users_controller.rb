@@ -5,18 +5,13 @@ class UsersController < ApplicationController
     end
 
     post '/signup' do
-        #  binding.pry
         user = User.new(username: params[:username], password: params[:password])
-        if params[:username].strip == "" && params[:password].strip == ""
-            @error = "Error: Username and password cannot be blank."
-            erb :'/users/signup'
-        elsif User.find_by(username: params[:username])
-            @error = "Account with that username already exists."
-            erb :'/users/signup'
-        else 
-            user.save
+        if user.save
             session[:user_id] = user.id 
             erb :'/list/new'
+        else
+            @error = "Invalid data. Please try again."
+            erb :'/users/signup'
         end
     end
 

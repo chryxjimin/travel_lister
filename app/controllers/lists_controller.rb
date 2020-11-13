@@ -10,7 +10,6 @@ class ListsController < ApplicationController
         end
 
 
-
         post '/list' do
             @lists = current_user.lists.build(params)
             if @lists.description.strip != "" && @lists.save
