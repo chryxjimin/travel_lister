@@ -12,7 +12,7 @@ class ListsController < ApplicationController
 
         post '/list' do
             @lists = current_user.lists.build(params)
-            if @lists.description.strip != "" && @lists.save
+            if @lists.save
                 redirect to '/list'
             else 
                 @error = "Error: Please enter in a valid description."
@@ -57,7 +57,7 @@ class ListsController < ApplicationController
         delete '/list/:id' do
             @list = List.find_by_id(params[:id])
             @list.delete
-            @list.saveå
+            @list.save
             redirect "/list"
         end
 end
