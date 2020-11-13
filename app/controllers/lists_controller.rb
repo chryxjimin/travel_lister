@@ -3,11 +3,8 @@ class ListsController < ApplicationController
 
 
         get '/list/new' do
-            if current_user
-                erb :'/list/new'
-            else
-                redirect '/login'
-            end
+            require_login
+            erb :'/list/new'
         end
 
 
