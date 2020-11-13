@@ -31,8 +31,13 @@ class UsersController < ApplicationController
             session[:user_id] = user.id
             redirect "/list"
         else
-            @error = "Incorrect username or password. Please try again."
-            erb :"/users/login"
+            if params[:username].strip == "" ||  params[:password].strip == ""
+                @error = "The username and password cannot be blank."
+                erb :"/users/login"
+            else
+                @error = "Incorrect username or password. Please try again."
+                erb :"/users/login"
+            end
         end
     end
 
