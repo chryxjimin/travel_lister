@@ -5,12 +5,13 @@ class UsersController < ApplicationController
     end
 
     post '/signup' do
+        #Need to have an error pop up if the username has already been taken
         user = User.new(username: params[:username], password: params[:password])
         if user.save
             session[:user_id] = user.id 
             erb :'/list/new'
         else
-            @error = "Invalid data. Please try again."
+            @error = "Invalid data. The username must be at least 6 characters long. Please try again."
             erb :'/users/signup'
         end
     end
