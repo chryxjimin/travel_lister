@@ -15,9 +15,14 @@
   </head>
   <body>
     <div class="wrapper">
-    <p><button><a href="/list">List</a></button><br></p>
-    <p><button><a href="/">Home Page</a></button><br></p>
-    <p><button><a href="/logout">Log Out</a></button><br></p>
+      <% if is_logged_in? %>
+        <div><button><a href="/list">List</a></button><br></div>
+        <div><button><a href="/logout">Log Out</a></button><br></div>
+      <% else %>
+        <div><button><a href="/signup">Sign Up</a></button><br></div>
+        <div><button><a href="/login">Log In</a></button><br></div>
+      <% end %>
+        <div><button><a href="/">Home Page</a></button><br></div>
 
         <%= yield %>
 
