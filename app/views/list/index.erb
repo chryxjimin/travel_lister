@@ -4,17 +4,17 @@
 <br>
 <h3><%= @message %></h3>
 <% @lists.each do |list| %>
-    <div id ="checkbox-container">
-      <div>
-        <input type="checkbox" name="list[description][]" value="<%= list.description %>" id="<%= list.description %>" > <%= list.description %>
+    <div>
+      <li>
+         <%= list.description %>
          <button><a href="/list/<%= list.id %>/edit"> Edit </a></button>
          <form action="/list/<%= list.id %>" method="post">
             <input id="hidden" type="hidden" name="_method" value="delete">
             <input type="submit" value="delete">
         </form>
         <br>
-      </div>
-    </div>
+      </li>
+   </div>
 <% end %>
 <br>
 
