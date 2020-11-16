@@ -5,9 +5,11 @@ class UsersController < ApplicationController
     end
 
     post '/signup' do
-        #Need to have an error pop up if the username has already been taken
         user = User.new(username: params[:username], password: params[:password])
-        if user.save
+        if User.find_by(username: params[:username])
+            @error = "The username has already been taken."
+            erb :'/users/signup'
+        elsif user.save
             session[:user_id] = user.id 
             erb :'/list/new'
         else

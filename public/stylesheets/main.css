@@ -44,4 +44,5 @@ body {
 .box {
     text-align: left;
     margin-left: 400px;
+    display: block;
 }
