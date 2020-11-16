@@ -5,19 +5,16 @@
 <h3><a href='/list/new'>Click here to add a new entry</a></h3>
 <br>
 <h3><%= @message %></h3>
-<% @lists.each do |list| %>
-    <div>
-      <li>
+ <div class="box">
+   <% @lists.each do |list| %>
          <%= list.description %>
-         <button><a href="/list/<%= list.id %>/edit"> Edit </a></button>
-         <form action="/list/<%= list.id %>" method="post">
-            <input id="hidden" type="hidden" name="_method" value="delete">
-            <input type="submit" value="delete">
-        </form>
-        <br>
-      </li>
-   </div>
-<% end %>
+            <button><a href="/list/<%= list.id %>/edit"> Edit </a></button>
+            <form action="/list/<%= list.id %>" method="post">
+                <input id="hidden" type="hidden" name="_method" value="delete">
+                <input type="submit" value="Remove">
+            </form>
+   <% end %>
+ </div>
 <br>
 
 
