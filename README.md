@@ -38,19 +38,5 @@ Please make sure to update tests as appropriate.
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
 
 
-<!-- TODO:
-Background Color
-        <body style=“background-color:powderblue;”>
-Fonts
-      <p style=“font-family:verdana;”>
 
-Text size
-      <p style=“font-size:300%;”>
-
-HTML LINK COLORS
-- by default the links are underlined and blue (unvisited), purple (visted) or red (active)
-- a:link, a:visited, a:hover, a:active
-- You can make the link in the button>>> notes on doing that on the killer website project further down 
-
- -->
 
