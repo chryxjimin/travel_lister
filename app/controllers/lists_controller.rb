@@ -28,8 +28,13 @@ class ListsController < ApplicationController
     
 
         get '/list/:id' do
-            @lists = List.find_by_id(params[:id])
-            if current_user.id == @lists.user_id
+            # binding.pry
+            @list = List.find_by_id(params[:id])
+            if @list == nil
+                @error = "That list item does not exist. Please try again."
+                @lists = current_user.lists.reverse
+                erb :'/list/index'
+            elsif current_user.id == @list.user_id
                 erb :'/list/show'
             else
                 @error = "That list item does not exist. Please try again."
@@ -44,7 +49,11 @@ class ListsController < ApplicationController
             @list = List.find_by_id(params[:id])
             if current_user.id == @list.user_id
                 erb :'/list/edit'
-            else
+            elsif @list.id == nil
+                @error = "That list item does not exist. Please try again."
+                @lists = current_user.lists.reverse
+                erb :'/list/index'
+            else    
                 @error = "That list item does not exist. Please try again."
                 @lists = current_user.lists.reverse
                 erb :'/list/index'

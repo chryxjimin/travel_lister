@@ -1,8 +1,8 @@
 <br>
 
-<%= @lists.description %>
+<%= @list.description %>
 
-<form action="/list/<%= @lists.id %>" method="post">
+<form action="/list/<%= @list.id %>" method="post">
   <input id="hidden" type="hidden" name="_method" value="delete">
   <br>
   <input type="submit" value="delete">
