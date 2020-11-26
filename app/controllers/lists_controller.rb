@@ -29,7 +29,13 @@ class ListsController < ApplicationController
 
         get '/list/:id' do
             @lists = List.find_by_id(params[:id])
-            erb :'/list/show'
+            if current_user.id == @lists.user_id
+                erb :'/list/show'
+            else
+                @error = "That list item does not exist. Please try again."
+                @lists = current_user.lists.reverse
+                erb :'/list/index'
+            end
         end
 
     
@@ -48,7 +54,7 @@ class ListsController < ApplicationController
      
         patch '/list/:id' do
             @list = List.find_by_id(params[:id])
-            if !params[:description].strip.empty?
+            if current_user.id == @list.user_id && !params[:description].strip.empty?
                 @list.update(description: params[:description])
                 @list.save
                 redirect "/list/#{params[:id]}"
